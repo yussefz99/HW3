@@ -7,12 +7,6 @@ namespace mtm {
 
     /// class Node --------------------------------------------------------
 
-    template<typename T>
-    struct Node {
-        T data;
-        Node* next;
-        explicit Node(const T& val) : data(val), next(nullptr) {}
-    };
 //    class Node{
 //    private:
 //        T* data;
@@ -37,33 +31,13 @@ namespace mtm {
     template <typename T>
     class SortedList {
     public:
-        /**
-         *
-         * the class should support the following public interface:
-         * if needed, use =defualt / =delete
-         *
-         * constructors and destructor:
-         * 1. SortedList() - creates an empty list.
-         * 2. copy constructor
-         * 3. operator= - assignment operator
-         * 4. ~SortedList() - destructor
-         *
-         * iterator:
-         * 5. class ConstIterator;
-         * 6. begin method
-         * 7. end method
-         *
-         * functions:
-         * 8. insert - inserts a new element to the list
-         * 9. remove - removes an element from the list
-         * 10. length - returns the number of elements in the list
-         * 11. filter - returns a new list with elements that satisfy a given condition
-         * 12. apply - returns a new list with elements that were modified by an operation
-         */
          ///constructors and destructor:
          SortedList():head(nullptr),size(0){}
 
          SortedList(const SortedList<T>& other):head(nullptr),size(other.size){  // add exspation?
+             if(size < 0){ ///???????????????????????
+                 throw std::out_of_range("out_of_range");
+             }
              Node<T>* ptr=other.head;
              Node<T>* nextInorder = nullptr;
              while (ptr != nullptr){
@@ -80,6 +54,14 @@ namespace mtm {
 
          SortedList& operator=(const SortedList<T>& other){
              if(this == &other)return *this;
+             while (head) {
+                 Node<T>* temp = head;
+                 head = head->next;
+                 delete temp;
+             }
+             if(other.size < 0){ ///?????????????????????????????????????
+                 throw std::out_of_range("out_of_range");
+             }
              Node<T>* ptr=other.head;
              Node<T>* nextInorder = nullptr;
              while (ptr != nullptr){
@@ -95,6 +77,7 @@ namespace mtm {
              size=other.size;
              return *this;
          }
+
          ~SortedList(){
              while (head) {
                  Node<T>* temp = head;
@@ -131,7 +114,7 @@ namespace mtm {
 
          void remove(const ConstIterator& it){
              if (it.index < 0 || it.index >= size) {
-                 throw std::out_of_range("out_of_range");
+                 throw std::out_of_range("out of range");
              }
 
              if (it.index == 0) {
@@ -156,6 +139,25 @@ namespace mtm {
              return this->size;
         }
 
+        template<class  Condition>
+        SortedList<T> filter(Condition cond)const{
+            SortedList<T> newlist;
+            for(const T& data : *this){
+                if(cond(data)){
+                    newlist.insert(data);
+                }
+            }
+            return newlist;
+        }
+
+        template<class Function>
+        SortedList<T> apply(Function Func)const{
+            SortedList<T> newlist;
+            for(const T& data : *this){
+                newlist.insert(Func(data));
+            }
+            return newlist;
+        }
 
 //---------------------------------------------------------
          friend bool operator==(const SortedList<T>& l1 ,const SortedList<T>& l2){ //?????????
@@ -172,9 +174,16 @@ namespace mtm {
          //-----------------------------------------------------------------
 
     private:
+
+        template<typename S>
+        struct Node {
+            S data;
+            Node* next;
+            explicit Node(const S& val) : data(val), next(nullptr) {}
+        };
+
         Node<T>* head;
         int size;
-
     };
 
 
@@ -186,15 +195,15 @@ namespace mtm {
         int index;
         const SortedList* list;
         friend class SortedList;
-        ConstIterator(const SortedList* list,int index):list(list),index(index){}
+        ConstIterator(const SortedList* list,int index):index(index),list(list){}
     public:
         ConstIterator(const ConstIterator& other)=default;
         ConstIterator& operator=(const ConstIterator& other)=default;
         ~ConstIterator()=default;
         ConstIterator& operator++(){
-            if(index == list->size){
-                throw std::out_of_range("out_of_range");
-            }
+//            if(index == list->size){
+//                throw std::out_of_range("out_of_range");
+//            }
             index++;
             return *this;
         }
@@ -215,7 +224,7 @@ namespace mtm {
         }
 
         const T& operator*()const{
-            if(index < 0 || index >= list->size){
+            if(index < 0 || index >= list->length()){
                 throw std::out_of_range("out_of_range");
             }
             Node<T>* ptr=list->head;
