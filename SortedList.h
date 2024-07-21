@@ -113,10 +113,10 @@ namespace mtm {
          }
 
          void remove(const ConstIterator& it){
-             if (it.index < 0 || it.index >= size) {
+             if (it.index < 0 || it.index > size) {
                  throw std::out_of_range("out of range");
              }
-
+             if(it.index == size)return; ///???????????//
              if (it.index == 0) {
                  Node<T>* temp = head;
                  head = head->next;
@@ -201,9 +201,9 @@ namespace mtm {
         ConstIterator& operator=(const ConstIterator& other)=default;
         ~ConstIterator()=default;
         ConstIterator& operator++(){
-//            if(index == list->size){
-//                throw std::out_of_range("out_of_range");
-//            }
+            if(index == list->size){
+                throw std::out_of_range("out_of_range");
+            }
             index++;
             return *this;
         }
