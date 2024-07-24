@@ -5,27 +5,6 @@
 
 namespace mtm {
 
-    /// class Node --------------------------------------------------------
-
-//    class Node{
-//    private:
-//        T* data;
-//        Node<T>* next;
-//    public:
-//        explicit Node(const T& data):data(data),next(nullptr){}
-//        Node():data(nullptr),next(nullptr){}
-//        ~Node<T>(){
-//            delete data;
-//        }
-//        T* get_data(){
-//            return data;
-//        }
-//        Node<T>* getNext(){
-//            return next;
-//        }
-//    };
-
-
 /// class Sortedlist --------------------------------------------------------
 
     template <typename T>
@@ -116,7 +95,7 @@ namespace mtm {
              if (it.index < 0 || it.index > size) {
                  throw std::out_of_range("out of range");
              }
-             if(it.index == size)return; ///???????????//
+             if(it.index == size || size == 0)return;
              if (it.index == 0) {
                  Node<T>* temp = head;
                  head = head->next;
@@ -160,7 +139,7 @@ namespace mtm {
         }
 
 //---------------------------------------------------------
-         friend bool operator==(const SortedList<T>& l1 ,const SortedList<T>& l2){ //?????????
+         friend bool operator==(const SortedList<T>& l1 ,const SortedList<T>& l2){
              if(l1.size != l2.size)return false;
              Node<T>* ptr1=l1.head;
              Node<T>* ptr2=l2.head;
