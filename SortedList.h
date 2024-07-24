@@ -38,7 +38,7 @@ namespace mtm {
                  head = head->next;
                  delete temp;
              }
-             if(other.size < 0){ ///?????????????????????????????????????
+             if(other.size < 0){ /// no need the constructor checks first!!!
                  throw std::out_of_range("out_of_range");
              }
              Node<T>* ptr=other.head;
