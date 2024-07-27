@@ -47,8 +47,6 @@ void TaskManager::completeTask(const std::string &personName) {
     }catch(std::runtime_error &e){
         throw e;
     }
-//    const char *str=e.what();
-//    std::cout <<str << std::endl;
 }
 
 void TaskManager::bumpPriorityByType(TaskType type, int priority) { /// i know we can use filter and apply her but without them the code is more simple

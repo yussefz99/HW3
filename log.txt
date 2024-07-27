@@ -1,0 +1,114 @@
+* commit 8d5bd332dd40be82ce7901a27657450b085e34be
+| Author: yussefz99 <yussefz@campus.technion.ac.il>
+| Date:   Sat Jul 27 18:06:05 2024 +0300
+| 
+|     updated
+| 
+|  Dry.pdf         | Bin 0 -> 140489 bytes
+|  SortedList.h    |  64 +++++++++++++++++++++++++++---------------------------
+|  TaskManager     | Bin 0 -> 256176 bytes
+|  TaskManager.cpp |  38 +++++++++++++++-----------------
+|  TaskManager.h   |   4 +---
+|  5 files changed, 50 insertions(+), 56 deletions(-)
+| 
+* commit b08644b246f9e414abd916c7b3dae329b7b1abca
+| Author: yussefz99 <yussefz@campus.technion.ac.il>
+| Date:   Wed Jul 24 14:00:43 2024 +0300
+| 
+|     Create Matam HW3 Dry.docx
+| 
+|  Matam HW3 Dry.docx | Bin 0 -> 14692 bytes
+|  1 file changed, 0 insertions(+), 0 deletions(-)
+|   
+*   commit cdbea8731c3bfddb3a8ad84827bbac29c663ba63
+|\  Merge: 00ba3c9 3654c99
+| | Author: yussefz99 <yussefz@campus.technion.ac.il>
+| | Date:   Wed Jul 24 13:04:24 2024 +0300
+| | 
+| |     Merge branch 'main' of https://github.com/yussefz99/HW3
+| | 
+| * commit 3654c990e31e7b009238107462dc631018f948c8
+| | Author: amirha28 <amir.hamoud@campus.technion.ac.il>
+| | Date:   Wed Jul 24 13:03:09 2024 +0300
+| | 
+| |     updated version
+| | 
+| |  SortedList.h | 2 +-
+| |  1 file changed, 1 insertion(+), 1 deletion(-)
+| | 
+| * commit dade81c81a8c358813d3e69c6b6854aee270a11c
+| | Author: amirha28 <amir.hamoud@campus.technion.ac.il>
+| | Date:   Wed Jul 24 12:58:59 2024 +0300
+| | 
+| |     Update SortedList.h
+| | 
+| |  SortedList.h | 2 +-
+| |  1 file changed, 1 insertion(+), 1 deletion(-)
+| | 
+* | commit 00ba3c91ded6c3bcdb01ca7c960a06d552396cf2
+|/  Author: yussefz99 <yussefz@campus.technion.ac.il>
+|   Date:   Wed Jul 24 13:04:20 2024 +0300
+|   
+|       aaaa
+|   
+|    SortedList.h | 25 ++-----------------------
+|    1 file changed, 2 insertions(+), 23 deletions(-)
+| 
+* commit 5103cbf387d8c0bb3169c4c5a76878eda755e76f
+| Author: yussefz99 <yussefz@campus.technion.ac.il>
+| Date:   Sun Jul 21 11:34:42 2024 +0300
+| 
+|     passed all 6 tests
+| 
+|  SortedList.h | 10 +++++-----
+|  1 file changed, 5 insertions(+), 5 deletions(-)
+| 
+* commit 3b52fcfdee5f7ae4299465636355a69920190bce
+| Author: yussefz99 <yussefz@campus.technion.ac.il>
+| Date:   Sat Jul 20 20:28:49 2024 +0300
+| 
+|     finish without throws
+| 
+|  SortedList.h    |  81 +++++++++++++++++++++++--------------------
+|  TaskManager.cpp | 100 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|  TaskManager.h   |  11 ++++--
+|  3 files changed, 153 insertions(+), 39 deletions(-)
+| 
+* commit 5fd83a0af02ac548e1a1c65bc7c3cfe3ce805072
+| Author: yussefz99 <yussefz@campus.technion.ac.il>
+| Date:   Fri Jul 19 19:19:15 2024 +0300
+| 
+|     working on sortedlist.h
+| 
+|  SortedList.h | 209 ++++++++++++++++++++++++++++++++++++++++++++++++++++-----
+|  1 file changed, 192 insertions(+), 17 deletions(-)
+| 
+* commit ebb9fc09ff533a819b528f0a66d73a6fd453475b
+| Author: AdiHarif <adi.harif@campus.technion.ac.il>
+| Date:   Mon Jul 15 20:55:03 2024 +0300
+| 
+|     Adds supplied files
+| 
+|  Person.cpp           |  51 +++++
+|  Person.h             |  79 ++++++++
+|  SortedList.h         |  57 ++++++
+|  Task.cpp             |  83 ++++++++
+|  Task.h               | 115 +++++++++++
+|  TaskManager.h        |  75 +++++++
+|  main.cpp             | 531 +++++++++++++++++++++++++++++++++++++++++++++++++
+|  tests/test1.expected |   3 +
+|  tests/test2.expected |   3 +
+|  tests/test3.expected |  30 +++
+|  tests/test4.expected |   3 +
+|  tests/test5.expected |   3 +
+|  tests/test6.expected |  15 ++
+|  13 files changed, 1048 insertions(+)
+| 
+* commit 1d686955fb829e5ecd8af0a69edce35628cc5d8d
+  Author: AdiHarif <adi.harif@campus.technion.ac.il>
+  Date:   Mon Jul 15 20:53:59 2024 +0300
+  
+      Initial Commit - Adds README file
+  
+   README.md | 7 +++++++
+   1 file changed, 7 insertions(+)
