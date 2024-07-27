@@ -14,46 +14,46 @@ namespace mtm {
          SortedList():head(nullptr),size(0){}
 
          SortedList(const SortedList<T>& other):head(nullptr),size(other.size){  // add exspation?
-             if(size < 0){ ///???????????????????????
-                 throw std::out_of_range("out_of_range");
-             }
-             Node<T>* ptr=other.head;
-             Node<T>* nextInorder = nullptr;
-             while (ptr != nullptr){
-                 Node<T>* newNode=new Node<T>(ptr->data);
-                 if(head == nullptr){
-                     head=newNode;
-                 } else{
-                     nextInorder->next=newNode;
+             try{
+                 SortedList<T> assinList;
+                 Node<T>* curr=other.head;
+                 while (curr != nullptr) {
+                     assinList.insert(curr->data);
+                     curr=curr->next;
                  }
-                 nextInorder = newNode;
-                 ptr=ptr->next;
+                 while (head) {
+                     Node<T>* temp = head;
+                     head = head->next;
+                     delete temp;
+                 }
+                 size=assinList.size;
+                 head=assinList.head;
+                 assinList.head= nullptr;
+             }catch(...){
+                 throw std::bad_alloc();
              }
          }
 
          SortedList& operator=(const SortedList<T>& other){
              if(this == &other)return *this;
-             while (head) {
-                 Node<T>* temp = head;
-                 head = head->next;
-                 delete temp;
-             }
-             if(other.size < 0){ /// no need the constructor checks first!!!
-                 throw std::out_of_range("out_of_range");
-             }
-             Node<T>* ptr=other.head;
-             Node<T>* nextInorder = nullptr;
-             while (ptr != nullptr){
-                 Node<T>* newNode=new Node<T>(ptr->data);
-                 if(head == nullptr){
-                     head=newNode;
-                 } else{
-                     nextInorder->next=newNode;
+             try{
+                 SortedList<T> assinList;
+                 Node<T>* curr=other.head;
+                 while (curr != nullptr) {
+                     assinList.insert(curr->data);
+                     curr=curr->next;
                  }
-                 nextInorder = newNode;
-                 ptr=ptr->next;
+                 while (head) {
+                     Node<T>* temp = head;
+                     head = head->next;
+                     delete temp;
+                 }
+                 size=assinList.size;
+                 head=assinList.head;
+                 assinList.head= nullptr;
+             }catch(...){
+                 throw std::bad_alloc();
              }
-             size=other.size;
              return *this;
          }
 

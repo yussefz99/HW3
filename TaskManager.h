@@ -15,7 +15,7 @@ private:
     static const int MAX_PERSONS = 10;
     int employees_num;
     int task_index;
-    Person* employees = nullptr; //????
+    Person employees[MAX_PERSONS];
     SortedList<Task> All_Tasks;
 
 public:
@@ -25,8 +25,6 @@ public:
      * Note - you may add =default if needed.
      */
     TaskManager();
-
-    ~TaskManager();
 
     /**
      * @brief Deleted copy constructor to prevent copying of TaskManager objects.

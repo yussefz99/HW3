@@ -2,11 +2,8 @@
 // Created by yusse on 20/07/2024.
 //
 #include "TaskManager.h"
-TaskManager::TaskManager():employees_num(0),task_index(0),employees(new Person[MAX_PERSONS]){}
+TaskManager::TaskManager():employees_num(0),task_index(0){}
 
-TaskManager::~TaskManager() {
-    delete[] employees;
-}
 
 void TaskManager::assignTask(const std::string &personName, const Task &task){
     Task newTask(task.getPriority(),task.getType(),task.getDescription());
@@ -35,19 +32,27 @@ void TaskManager::assignTask(const std::string &personName, const Task &task){
 }
 
 void TaskManager::completeTask(const std::string &personName) {
-    for(int i=0;i<employees_num;i++){
-        if(employees[i].getName() == personName){
-           int id= employees[i].completeTask();
-            for(SortedList<Task>::ConstIterator it = All_Tasks.begin(); it != All_Tasks.end();++it){
-                if((*it).getId() == id){
-                    All_Tasks.remove(it);
+    try{
+        for(int i=0;i<employees_num;i++){
+            if(employees[i].getName() == personName){
+                int id= employees[i].completeTask();
+                for(SortedList<Task>::ConstIterator it = All_Tasks.begin(); it != All_Tasks.end();++it){
+                    if((*it).getId() == id){
+                        All_Tasks.remove(it);
+                        return;
+                    }
                 }
             }
         }
+    }catch(std::runtime_error &e){
+        throw e;
     }
+//    const char *str=e.what();
+//    std::cout <<str << std::endl;
 }
 
-void TaskManager::bumpPriorityByType(TaskType type, int priority) {
+void TaskManager::bumpPriorityByType(TaskType type, int priority) { /// i know we can use filter and apply her but without them the code is more simple
+    if(priority <=0 ) return;
     for(int i=0;i<employees_num;i++){
         SortedList<Task> temp=employees[i].getTasks();
         for(SortedList<Task>::ConstIterator it = temp.begin(); it != temp.end();++it){
@@ -58,6 +63,7 @@ void TaskManager::bumpPriorityByType(TaskType type, int priority) {
                 temp.insert(newTask);
             }
         }
+        employees[i].setTasks(temp);
     }
     for(SortedList<Task>::ConstIterator it = All_Tasks.begin(); it != All_Tasks.end();++it){
         if((*it).getType() == type){
@@ -67,16 +73,6 @@ void TaskManager::bumpPriorityByType(TaskType type, int priority) {
             All_Tasks.insert(newTask);
         }
     }
-//    SortedList<Task> filterList = All_Tasks.filter([type](const Task &task) { return task.getType() == type; });
-//    SortedList<Task> newList;
-//    for (const Task &task: filterList) {
-//        Task newTask(task.getPriority() + priority, task.getType(), task.getDescription());
-//        newTask.setId(task.getId());
-//        newList.insert(newTask);
-//    }
-//    for (const Task &task: newList) {
-//        All_Tasks.insert(task);
-//    }
 }
 
 void TaskManager::printAllEmployees() const {
